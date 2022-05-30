@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ajax addition microservice</title>
+	</head>
+	<body>
+<script>
+	function lw() {
+			document.getElementById("addition").innerHTML="";
+var req = new XMLHttpRequest();
+			req.open("POST","http://ec2-13-232-123-161.ap-south-1.compute.amazonaws.com:90/subtraction?x=20&y=200",true);
+			req.send();
+			req.onreadystatechange = function(){
+			var op = req.responseText;
+					document.getElementById("addition").innerHTML = JSON.parse(op).subtraction;} 
+		}
+        function lw2() {
+			document.getElementById("addition2").innerHTML="";
+var req = new XMLHttpRequest();
+                        req.open("GET","http://ec2-13-232-123-161.ap-south-1.compute.amazonaws.com:90/log",true);
+                        req.send();
+			req.onreadystatechange = function() {
+					var op = req.responseText;
+                        document.getElementById("addition2").innerHTML= op;
+				}
+                }
+</script>
+
+<h1>This is a Heading</h1>
+<div id="addition"></div>
+<div id="addition2"></div>
+<p>This is a paragraph.</p>
+<button onclick=lw()>add</button>
+<button onclick=lw2()>log</button>
+	</body>
+</html>
